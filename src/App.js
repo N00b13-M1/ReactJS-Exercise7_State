@@ -7,7 +7,8 @@ class App extends Component {
   //     this.state = 
   // }
   
-  state = [
+  state = {
+    personnes :[
     {
       prenom: "Plop",
       nom: "X",
@@ -25,43 +26,27 @@ class App extends Component {
       age: 20,
 
     }
-  ]
+  ]}
 
-  onShowLogParent = () =>{
-    this.setState([
-      {
-        prenom: "Elias",
-        nom: "X",
-        age: 25,
-      },
-      {
-        prenom: "Sammy",
-        nom: "Y",
-        age: 15,
-  
-      },
-      {
-        prenom: "Nico",
-        nom: "Z",
-        age: 20,
-  
-      }
-    ])
+  showLogParent = () =>{
+    let cube = {...this.state}
+    cube.personnes[0].age = 23;
+    this.setState(cube)
   }
 
   render() {
-    console.log(this.state)
+
     return (
 
       <div>
-        {/* {this.state.map(element =>
-          <h1>Hello c'est ici {element.prenom} {element.nom}! J'ai {element.age} ans </h1>)
+        {/* {this.state.personnes.map((element,index) =>
+          <h1 key={index}>Hello c'est ici {element.prenom} {element.nom}! J'ai {element.age} ans </h1>)
         } */}
         <Perso 
-          prenom={this.state[0].prenom} 
-          nom={this.state[0].nom} 
-          age={this.state[0].age}
-          onShowLog={this.onShowLogParent}
+          prenom={this.state.personnes[0].prenom} 
+          nom={this.state.personnes[0].nom} 
+          age={this.state.personnes[0].age}
+          showLog={() => this.showLogParent()}
         />
       </div>
 
